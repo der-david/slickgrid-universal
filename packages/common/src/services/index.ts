@@ -10,6 +10,8 @@ export * from './grid.service';
 export * from './gridEvent.service';
 export * from './gridState.service';
 export * from './groupingAndColspan.service';
+export * from './injectable';
+export * from './injector';
 export * from './pagination.service';
 export * from './pubSub.service';
 export * from './shared.service';

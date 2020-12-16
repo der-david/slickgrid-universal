@@ -2,7 +2,7 @@
 import { PaginationService, SharedService, SlickGrid, GridOption, Locale } from '@slickgrid-universal/common';
 import { SlickPaginationComponent } from '../slick-pagination.component';
 import { TranslateServiceStub } from '../../../../../test/translateServiceStub';
-import { EventPubSubService } from '../../services/eventPubSub.service';
+import { PubSubService } from '../../services/eventPubSub.service';
 
 function removeExtraSpaces(text: string) {
   return `${text}`.replace(/\s{2,}/g, '');
@@ -60,7 +60,7 @@ Object.defineProperty(paginationServiceStub, 'itemsPerPage', { get: jest.fn(() =
 describe('Slick-Pagination Component', () => {
   let component: SlickPaginationComponent;
   let div: HTMLDivElement;
-  let eventPubSubService: EventPubSubService;
+  let eventPubSubService: PubSubService;
   let sharedService: SharedService;
   let translateService: TranslateServiceStub;
 
@@ -70,7 +70,7 @@ describe('Slick-Pagination Component', () => {
     div = document.createElement('div');
     document.body.appendChild(div);
     sharedService = new SharedService();
-    eventPubSubService = new EventPubSubService();
+    eventPubSubService = new PubSubService();
     translateService = new TranslateServiceStub();
   });
 

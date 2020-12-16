@@ -1,13 +1,13 @@
-import { EventPubSubService } from '../eventPubSub.service';
+import { PubSubService } from '../eventPubSub.service';
 import { EventNamingStyle } from '@slickgrid-universal/common';
 
 describe('EventPubSub Service', () => {
-  let service: EventPubSubService;
+  let service: PubSubService;
   let divContainer: HTMLDivElement;
 
   beforeEach(() => {
     divContainer = document.createElement('div');
-    service = new EventPubSubService(divContainer);
+    service = new PubSubService(divContainer);
     service.eventNamingStyle = EventNamingStyle.camelCase;
   });
 

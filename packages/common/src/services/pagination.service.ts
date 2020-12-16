@@ -16,10 +16,12 @@ import {
 import { executeBackendProcessesCallback, onBackendError } from './backend-utilities';
 import { SharedService } from './shared.service';
 import { PubSubService } from './pubSub.service';
+import { Injectable } from './injectable';
 
 // using external non-typed js libraries
 declare const Slick: SlickNamespace;
 
+@Injectable()
 export class PaginationService {
   private _eventHandler = new Slick.EventHandler();
   private _initialized = false;
@@ -39,7 +41,9 @@ export class PaginationService {
   grid: SlickGrid;
 
   /** Constructor */
-  constructor(private pubSubService: PubSubService, private sharedService: SharedService) { }
+  constructor(private pubSubService: PubSubService, private sharedService: SharedService) {
+    console.log('>>PubSubService', this.pubSubService.subscribe('test', () => console.log('te')), 'SharedService', this.sharedService)
+  }
 
   /** Getter of SlickGrid DataView object */
   get dataView(): SlickDataView | undefined {

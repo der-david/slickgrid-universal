@@ -45,6 +45,9 @@
       "**/cypress/**"
     ]
   },
+  "dependencies": {
+    "reflect-metadata": "^0.1.13"
+  },
   "devDependencies": {
     "@types/jest": "^26.0.18",
     "@types/node": "^14.14.12",

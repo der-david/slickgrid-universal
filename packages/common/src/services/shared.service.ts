@@ -1,5 +1,7 @@
 import { Column, CurrentPagination, SlickDataView, GridOption, SlickGrid, SlickGroupItemMetadataProvider } from '../interfaces/index';
+import { Injectable } from './injectable';
 
+@Injectable()
 export class SharedService {
   private _allColumns: Column[];
   private _dataView: SlickDataView;

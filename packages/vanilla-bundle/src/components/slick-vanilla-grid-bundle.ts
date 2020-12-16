@@ -70,11 +70,12 @@ import {
   convertParentChildArrayToHierarchicalView,
   emptyElement,
   GetSlickEventType,
+  Injector,
 } from '@slickgrid-universal/common';
 import { SlickCompositeEditorComponent } from '@slickgrid-universal/composite-editor-component';
 import { SlickEmptyWarningComponent } from '@slickgrid-universal/empty-warning-component';
 
-import { EventPubSubService } from '../services/eventPubSub.service';
+import { PubSubService } from '../services/eventPubSub.service';
 import { TextExportService } from '../services/textExport.service';
 import { ResizerService } from '../services/resizer.service';
 import { SalesforceGlobalGridOptions } from '../salesforce-global-grid-options';
@@ -87,7 +88,7 @@ import { UniversalContainerService } from '../services/universalContainer.servic
 declare const Slick: SlickNamespace;
 
 export class SlickVanillaGridBundle {
-  protected _eventPubSubService: EventPubSubService;
+  protected _eventPubSubService: PubSubService;
   private _columnDefinitions: Column[];
   private _gridOptions: GridOption;
   private _gridContainerElm: HTMLElement;
@@ -264,7 +265,7 @@ export class SlickVanillaGridBundle {
     hierarchicalDataset?: any[],
     services?: {
       collectionService?: CollectionService,
-      eventPubSubService?: EventPubSubService,
+      eventPubSubService?: PubSubService,
       extensionService?: ExtensionService,
       extensionUtility?: ExtensionUtility,
       filterService?: FilterService,
@@ -303,7 +304,7 @@ export class SlickVanillaGridBundle {
     this.translaterService = services?.translaterService ?? this._gridOptions.translater;
 
     // initialize and assign all Service Dependencies
-    this._eventPubSubService = services?.eventPubSubService ?? new EventPubSubService(gridParentContainerElm);
+    this._eventPubSubService = services?.eventPubSubService ?? new PubSubService(gridParentContainerElm);
     this._eventPubSubService.eventNamingStyle = this._gridOptions?.eventNamingStyle ?? EventNamingStyle.camelCase;
 
     this.gridEventService = services?.gridEventService ?? new GridEventService();
@@ -316,8 +317,12 @@ export class SlickVanillaGridBundle {
     this.resizerService = services?.resizerService ?? new ResizerService(this._eventPubSubService);
     this.sortService = services?.sortService ?? new SortService(this.sharedService, this._eventPubSubService);
     this.treeDataService = services?.treeDataService ?? new TreeDataService(this.sharedService);
-    this.paginationService = services?.paginationService ?? new PaginationService(this._eventPubSubService, this.sharedService);
-
+    // this.paginationService = services?.paginationService ?? new PaginationService(this._eventPubSubService, this.sharedService);
+    const injector = new Injector();
+    injector.inject(PubSubService);
+    // this._eventPubSubService = injector.resolve(PubSubService);
+    this.paginationService = injector.resolve(PaginationService);
+    console.log(this.paginationService);
     // extensions
     const autoTooltipExtension = new AutoTooltipExtension(this.extensionUtility, this.sharedService);
     const cellExternalCopyManagerExtension = new CellExternalCopyManagerExtension(this.extensionUtility, this.sharedService);

@@ -39,7 +39,7 @@ import * as backendUtilities from '@slickgrid-universal/common/dist/commonjs/ser
 import * as utilities from '@slickgrid-universal/common/dist/commonjs/services/utilities';
 
 import { SlickVanillaGridBundle } from '../slick-vanilla-grid-bundle';
-import { EventPubSubService } from '../../services/eventPubSub.service';
+import { PubSubService } from '../../services/eventPubSub.service';
 import { TextExportService } from '../../services/textExport.service';
 import { TranslateServiceStub } from '../../../../../test/translateServiceStub';
 import { HttpStub } from '../../../../../test/httpClientStub';
@@ -275,7 +275,7 @@ describe('Slick-Vanilla-Grid-Bundle Component instantiated via Constructor', () 
   let columnDefinitions: Column[];
   let gridOptions: GridOption;
   let sharedService: SharedService;
-  let eventPubSubService: EventPubSubService;
+  let eventPubSubService: PubSubService;
   let translateService: TranslateServiceStub;
   const http = new HttpStub();
   const container = new UniversalContainerService();
@@ -302,7 +302,7 @@ describe('Slick-Vanilla-Grid-Bundle Component instantiated via Constructor', () 
     } as unknown as GridOption;
     sharedService = new SharedService();
     translateService = new TranslateServiceStub();
-    eventPubSubService = new EventPubSubService(divContainer);
+    eventPubSubService = new PubSubService(divContainer);
     jest.spyOn(mockGrid, 'getOptions').mockReturnValue(gridOptions);
     dataset = [];
 
@@ -1866,7 +1866,7 @@ describe('Slick-Vanilla-Grid-Bundle Component instantiated via Constructor with 
   let columnDefinitions: Column[];
   let gridOptions: GridOption;
   let sharedService: SharedService;
-  let eventPubSubService: EventPubSubService;
+  let eventPubSubService: PubSubService;
   let translateService: TranslateServiceStub;
   let dataset = [];
   let hierarchicalDataset = null;
@@ -1894,7 +1894,7 @@ describe('Slick-Vanilla-Grid-Bundle Component instantiated via Constructor with 
     } as unknown as GridOption;
     sharedService = new SharedService();
     translateService = new TranslateServiceStub();
-    eventPubSubService = new EventPubSubService(divContainer);
+    eventPubSubService = new PubSubService(divContainer);
     jest.spyOn(mockGrid, 'getOptions').mockReturnValue(gridOptions);
     dataset = [];
     hierarchicalDataset = [{ file: 'documents', files: [{ file: 'vacation.txt' }] }];
@@ -1950,7 +1950,7 @@ describe('Slick-Vanilla-Grid-Bundle Component instantiated via Constructor with 
   let columnDefinitions: Column[];
   let gridOptions: GridOption;
   let sharedService: SharedService;
-  let eventPubSubService: EventPubSubService;
+  let eventPubSubService: PubSubService;
   let translateService: TranslateServiceStub;
   let dataset = [];
 
@@ -1966,7 +1966,7 @@ describe('Slick-Vanilla-Grid-Bundle Component instantiated via Constructor with 
     gridOptions = {} as unknown as GridOption;
     sharedService = new SharedService();
     translateService = new TranslateServiceStub();
-    eventPubSubService = new EventPubSubService(divContainer);
+    eventPubSubService = new PubSubService(divContainer);
     jest.spyOn(mockGrid, 'getOptions').mockReturnValue(gridOptions);
     dataset = [];
 

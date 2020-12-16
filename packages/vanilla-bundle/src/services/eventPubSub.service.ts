@@ -1,11 +1,11 @@
-import { EventNamingStyle, PubSubService, Subscription, titleCase, toKebabCase } from '@slickgrid-universal/common';
+import { EventNamingStyle, Injectable, PubSubService as UniversalPubSubService, Subscription, titleCase, toKebabCase } from '@slickgrid-universal/common';
 
 interface PubSubEvent {
   name: string;
   listener: (event: CustomEventInit) => void;
 }
 
-export class EventPubSubService implements PubSubService {
+export class PubSubService extends UniversalPubSubService {
   private _elementSource: Element;
   private _subscribedEvents: PubSubEvent[] = [];
 
@@ -20,6 +20,8 @@ export class EventPubSubService implements PubSubService {
   }
 
   constructor(elementSource?: Element) {
+    super();
+    console.log('PubSubService constructor!!');
     // use the provided element
     // or create a "phantom DOM node" (a div element that is never rendered) to set up a custom event dispatching
     this._elementSource = elementSource || document.createElement('div');

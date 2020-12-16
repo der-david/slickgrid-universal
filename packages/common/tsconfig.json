@@ -9,6 +9,8 @@
     "module": "esnext",
     "sourceMap": true,
     "noImplicitReturns": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "lib": [
       "es2020",
       "dom"
