@@ -15,6 +15,7 @@ import { App } from './app';
 import { TranslateService } from 'translate.service';
 
 // load necessary Flatpickr Locale(s), but make sure it's imported AFTER the SlickerModule import
+import 'flatpickr/dist/l10n/de';
 import 'flatpickr/dist/l10n/fr';
 
 class Main {
@@ -30,7 +31,7 @@ class Main {
       loadPath: 'assets/i18n/{{lang}}.json',
       lang: 'en'
     });
-    await translate.use('en');
+    await translate.use('de');
 
     // it might be better to use proper Dependency Injection
     // but for now let's use the window object to save keep a reference to our instantiated service

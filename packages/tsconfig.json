@@ -9,5 +9,6 @@
     { "path": "odata" },
     { "path": "text-export" },
     { "path": "vanilla-bundle" }
+    { "path": "odata-metadata-parser" }
   ]
 }
